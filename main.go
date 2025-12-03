@@ -58,7 +58,7 @@ func main() {
 	mcpServer.AddTool(tools[4], s.handleCheckParity)
 
 	// Start server
-	if err := mcpServer.Serve(); err != nil {
+	if err := server.ServeStdio(mcpServer); err != nil {
 		logger.Fatalf("Server error: %v", err)
 	}
 }
@@ -155,7 +155,8 @@ func (s *QuickBasePersonalMCPServer) handleSearchCode(ctx context.Context, reque
 		Query string `json:"query"`
 		Repo  string `json:"repo"`
 	}
-	if err := json.Unmarshal(request.Params.Arguments, &params); err != nil {
+	argsData, _ := json.Marshal(request.Params.Arguments)
+	if err := json.Unmarshal(argsData, &params); err != nil {
 		return mcp.NewToolResultError(fmt.Sprintf("Invalid parameters: %v", err)), nil
 	}
 	if params.Repo == "" {
@@ -212,7 +213,8 @@ func (s *QuickBasePersonalMCPServer) handleCompareImplementations(ctx context.Co
 	var params struct {
 		Feature string `json:"feature"`
 	}
-	if err := json.Unmarshal(request.Params.Arguments, &params); err != nil {
+	argsData, _ := json.Marshal(request.Params.Arguments)
+	if err := json.Unmarshal(argsData, &params); err != nil {
 		return mcp.NewToolResultError(fmt.Sprintf("Invalid parameters: %v", err)), nil
 	}
 
@@ -264,7 +266,8 @@ func (s *QuickBasePersonalMCPServer) handleGetAuthExample(ctx context.Context, r
 		AuthType string `json:"auth_type"`
 		Language string `json:"language"`
 	}
-	if err := json.Unmarshal(request.Params.Arguments, &params); err != nil {
+	argsData, _ := json.Marshal(request.Params.Arguments)
+	if err := json.Unmarshal(argsData, &params); err != nil {
 		return mcp.NewToolResultError(fmt.Sprintf("Invalid parameters: %v", err)), nil
 	}
 	if params.Language == "" {
@@ -281,7 +284,8 @@ func (s *QuickBasePersonalMCPServer) handleListFeatures(ctx context.Context, req
 	var params struct {
 		Category string `json:"category"`
 	}
-	if err := json.Unmarshal(request.Params.Arguments, &params); err != nil {
+	argsData, _ := json.Marshal(request.Params.Arguments)
+	if err := json.Unmarshal(argsData, &params); err != nil {
 		params.Category = "all"
 	}
 
