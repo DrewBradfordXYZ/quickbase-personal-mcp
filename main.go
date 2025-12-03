@@ -22,7 +22,7 @@ const (
 // Repo paths - customize these to your setup
 var (
 	quickbaseJSPath   = filepath.Join(os.Getenv("HOME"), "Projects", "Personal", "quickbase-js")
-	quickbaseGoPath   = filepath.Join(os.Getenv("HOME"), "Projects", "Personal", "quickbase-tree", "quickbase-go")
+	quickbaseGoPath   = filepath.Join(os.Getenv("HOME"), "Projects", "Personal", "quickbase-go")
 	quickbaseSpecPath = filepath.Join(os.Getenv("HOME"), "Projects", "Personal", "quickbase-spec")
 )
 
