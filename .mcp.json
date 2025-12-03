@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "quickbase-personal": {
+      "type": "stdio",
+      "command": "/Users/drew/MCP/quickbase-personal-mcp/quickbase-personal-mcp",
+      "args": []
+    }
+  }
+}
